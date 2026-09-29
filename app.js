@@ -1,0 +1,6 @@
+const dialog = document.querySelector('#service-dialog');
+const descriptions = {'Home cleaning':'A practical refresh for everyday living. Discuss your rooms, preferred frequency and the areas that need the most care.','Deep cleaning':'A more detailed clean for a seasonal reset or a space that needs extra attention. Let us know about buildup, delicate surfaces and hard-to-reach areas.','Move-in & move-out':'Prepare an empty property for its next chapter. Share your moving date, property size and any handover requirements.'};
+document.querySelectorAll('[data-service]').forEach(button => button.addEventListener('click', () => {const service = button.dataset.service;document.querySelector('#dialog-title').textContent = service;document.querySelector('#dialog-description').textContent = descriptions[service];dialog.showModal();}));
+document.querySelector('.close').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', event => {if(event.target === dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
+document.querySelector('#year').textContent = new Date().getFullYear();
